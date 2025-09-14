@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>环保生活指南 - 让绿色成为生活的一部分</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script>
+        // Tailwind 配置
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32', // 环保绿
+                        secondary: '#0288D1', // 天空蓝
+                        accent: '#FFC107', // 阳光黄
+                        neutral: '#F5F5F5', // 浅灰背景
+                        dark: '#263238', // 深色文本
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+            .nav-scrolled {
+                @apply bg-white bg-opacity-95 shadow-md;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-dark bg-neutral">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-4 md:px-6">
+            <nav class="flex justify-between items-center">
+                <a href="#" class="flex items-center space-x-2">
+                    <i class="fa fa-leaf text-primary text-2xl"></i>
+                    <span class="text-xl font-bold text-primary">环保生活指南</span>
+                </a>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="font-medium hover:text-primary transition-colors">首页</a>
+                    <a href="#tips" class="font-medium hover:text-primary transition-colors">环保技巧</a>
+                    <a href="#recycle" class="font-medium hover:text-primary transition-colors">垃圾分类</a>
+                    <a href="#news" class="font-medium hover:text-primary transition-colors">环保新闻</a>
+                    <a href="#calculator" class="font-medium hover:text-primary transition-colors">碳计算器</a>
+                    <button class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg">
+                        加入我们
+                    </button>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="md:hidden text-dark text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </nav>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobileMenu" class="md:hidden hidden mt-4 bg-white rounded-lg shadow-lg p-4 absolute left-4 right-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="font-medium hover:text-primary transition-colors py-2">首页</a>
+                    <a href="#tips" class="font-medium hover:text-primary transition-colors py-2">环保技巧</a>
+                    <a href="#recycle" class="font-medium hover:text-primary transition-colors py-2">垃圾分类</a>
+                    <a href="#news" class="font-medium hover:text-primary transition-colors py-2">环保新闻</a>
+                    <a href="#calculator" class="font-medium hover:text-primary transition-colors py-2">碳计算器</a>
+                    <button class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg">
+                        加入我们
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section id="home" class="pt-28 pb-16 md:pt-40 md:pb-24 bg-gradient-to-br from-primary/10 to-secondary/10">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow mb-6">
+                            让环保成为<br><span class="text-primary">生活的习惯</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-lg">
+                            探索简单实用的环保技巧，了解垃圾分类知识，计算你的碳足迹，一起为地球贡献力量。
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#tips" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg text-center font-medium">
+                                开始探索
+                            </a>
+                            <a href="#calculator" class="bg-white hover:bg-gray-100 text-primary border border-primary px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg text-center font-medium">
+                                计算碳足迹
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://picsum.photos/id/106/600/400" alt="绿色环保生活场景，展示自然环境与可持续生活方式" class="rounded-2xl shadow-xl w-full h-auto">
+                    </div>
+                </div>
+                
+                <!-- 数据统计 -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" id="counter1">0</div>
+                        <p class="text-gray-600">环保技巧</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" id="counter2">0</div>
+                        <p class="text-gray-600">活跃用户</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" id="counter3">0</div>
+                        <p class="text-gray-600">减少垃圾(吨)</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" id="counter4">0</div>
+                        <p class="text-gray-600">节约水资源(升)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 环保技巧 -->
+        <section id="tips" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">日常环保小技巧</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        小小的改变，大大的不同。从生活中的点滴做起，为环保贡献自己的力量。
+                    </p>
+                </div>
+                
+                <!-- 技巧分类标签 -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="tip-filter active bg-primary text-white px-5 py-2 rounded-full text-sm font-medium" data-filter="all">全部</button>
+                    <button class="tip-filter bg-white hover:bg-gray-100 px-5 py-2 rounded-full text-sm font-medium" data-filter="home">家庭</button>
+                    <button class="tip-filter bg-white hover:bg-gray-100 px-5 py-2 rounded-full text-sm font-medium" data-filter="kitchen">厨房</button>
+                    <button class="tip-filter bg-white hover:bg-gray-100 px-5 py-2 rounded-full text-sm font-medium" data-filter="outdoor">户外</button>
+                    <button class="tip-filter bg-white hover:bg-gray-100 px-5 py-2 rounded-full text-sm font-medium" data-filter="energy">能源</button>
+                </div>
+                
+                <!-- 技巧卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 家庭技巧1 -->
+                    <div class="tip-card bg-white rounded-xl shadow-md overflow-hidden card-hover" data-category="home">
+                        <img src="https://picsum.photos/id/1060/400/250" alt="使用可重复使用的布袋代替塑料袋" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fa fa-shopping-bag text-primary mr-2"></i>
+                                <span class="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">家庭</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">使用布袋购物</h3>
+                            <p class="text-gray-600 mb-4">随身携带可重复使用的布袋，减少塑料袋的使用，每年可避免数百个塑料袋进入环境。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 厨房技巧1 -->
+                    <div class="tip-card bg-white rounded-xl shadow-md overflow-hidden card-hover" data-category="kitchen">
+                        <img src="https://picsum.photos/id/292/400/250" alt="厨余垃圾堆肥" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fa fa-leaf text-primary mr-2"></i>
+                                <span class="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">厨房</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">厨余堆肥</h3>
+                            <p class="text-gray-600 mb-4">将蔬菜果皮等厨余垃圾进行堆肥处理，既能减少垃圾量，又能制作天然肥料用于种植。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 户外技巧1 -->
+                    <div class="tip-card bg-white rounded-xl shadow-md overflow-hidden card-hover" data-category="outdoor">
+                        <img src="https://picsum.photos/id/1059/400/250" alt="骑自行车出行代替开车" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fa fa-bicycle text-primary mr-2"></i>
+                                <span class="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">户外</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">绿色出行</h3>
+                            <p class="text-gray-600 mb-4">短距离出行选择步行或骑自行车，不仅环保，还能锻炼身体，减少碳排放。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 能源技巧1 -->
+                    <div class="tip-card bg-white rounded-xl shadow-md overflow-hidden card-hover" data-category="energy">
+                        <img src="https://picsum.photos/id/1068/400/250" alt="使用节能灯泡" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fa fa-lightbulb-o text-primary mr-2"></i>
+                                <span class="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">能源</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">使用LED灯泡</h3>
+                            <p class="text-gray-600 mb-4">LED灯泡比传统白炽灯节能80%以上，寿命长达25倍，能显著减少能源消耗。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 家庭技巧2 -->
+                    <div class="tip-card bg-white rounded-xl shadow-md overflow-hidden card-hover" data-category="home">
+                        <img src="https://picsum.photos/id/1058/400/250" alt="使用天然清洁用品" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fa fa-tint text-primary mr-2"></i>
+                                <span class="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">家庭</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">天然清洁用品</h3>
+                            <p class="text-gray-600 mb-4">使用小苏打、白醋等天然材料制作清洁用品，减少化学物质对环境和健康的影响。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 厨房技巧2 -->
+                    <div class="tip-card bg-white rounded-xl shadow-md overflow-hidden card-hover" data-category="kitchen">
+                        <img src="https://picsum.photos/id/1080/400/250" alt="减少食物浪费" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <i class="fa fa-cutlery text-primary mr-2"></i>
+                                <span class="text-sm font-medium bg-primary/10 text-primary px-3 py-1 rounded-full">厨房</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">减少食物浪费</h3>
+                            <p class="text-gray-600 mb-4">合理规划采购清单，妥善储存剩余食物，充分利用食材，减少家庭食物浪费。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-white border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg font-medium">
+                        查看更多技巧
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 垃圾分类指南 -->
+        <section id="recycle" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">垃圾分类指南</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        正确分类垃圾，既能回收利用资源，又能减少环境污染，让我们一起学习如何正确分类。
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">垃圾分类的重要性</h3>
+                        <p class="text-gray-700 mb-4">
+                            垃圾分类是实现垃圾减量化、资源化、无害化的重要措施。通过分类投放、分类收集，把有用物资从垃圾中分离出来重新回收、利用，变废为宝。
+                        </p>
+                        <p class="text-gray-700 mb-6">
+                            据统计，我国每年产生的生活垃圾超过4亿吨，如果能够有效分类，其中30%以上可以回收利用，相当于减少1.2亿吨垃圾处理量。
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>减少占地：生活垃圾中有些物质不易降解，使土地受到严重侵蚀。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>减少污染：废弃的电池含有金属汞、镉等有毒物质，会对人类产生严重的危害。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>变废为宝：1吨废塑料可回炼600公斤的柴油，回收1500吨废纸可免于砍伐用于生产1200吨纸的林木。</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="https://picsum.photos/id/1070/600/400" alt="垃圾分类图示，展示不同种类的垃圾桶和对应的垃圾" class="rounded-2xl shadow-xl w-full h-auto">
+                    </div>
+                </div>
+                
+                <!-- 分类卡片 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 可回收物 -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover border-t-4 border-blue-500">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-recycle text-2xl text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-blue-500">可回收物</h3>
+                        <p class="text-gray-600 mb-4">适宜回收利用和资源化利用的生活废弃物</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• 废纸、塑料、玻璃</li>
+                            <li>• 金属、织物</li>
+                            <li>• 电子废弃物</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 厨余垃圾 -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover border-t-4 border-green-500">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-leaf text-2xl text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-green-500">厨余垃圾</h3>
+                        <p class="text-gray-600 mb-4">居民日常生活及食品加工中产生的垃圾</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• 剩菜剩饭、果皮</li>
+                            <li>• 菜叶、骨骼内脏</li>
+                            <li>• 茶叶渣、果壳</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 有害垃圾 -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover border-t-4 border-red-500">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-exclamation-triangle text-2xl text-red-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-500">有害垃圾</h3>
+                        <p class="text-gray-600 mb-4">对人体健康或者自然环境造成直接或潜在危害的废弃物</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• 电池、灯管</li>
+                            <li>• 过期药品、化妆品</li>
+                            <li>• 油漆、化学清洁剂</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 其他垃圾 -->
+                    <div class="bg-white rounded-xl shadow-md p-6 card-hover border-t-4 border-gray-500">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-trash text-2xl text-gray-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-500">其他垃圾</h3>
+                        <p class="text-gray-600 mb-4">除上述三类以外的其他生活废弃物</p>
+                        <ul class="text-gray-700 space-y-1">
+                            <li>• 餐巾纸、卫生间用纸</li>
+                            <li>• 烟头、污染纸张</li>
+                            <li>• 陶瓷碎片、渣土</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 垃圾分类测试 -->
+                <div class="mt-16 bg-white rounded-2xl shadow-lg p-8 md:p-10">
+                    <h3 class="text-2xl font-bold mb-6 text-center">垃圾分类小测试</h3>
+                    <p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
+                        检验一下你对垃圾分类的了解程度吧！选择下列物品属于哪一类垃圾。
+                    </p>
+                    
+                    <div class="max-w-2xl mx-auto">
+                        <div id="quiz-container">
+                            <div class="mb-6">
+                                <p class="text-lg font-medium mb-4">问题：用过的面膜属于哪类垃圾？</p>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button class="quiz-option p-3 border border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">可回收物</button>
+                                    <button class="quiz-option p-3 border border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">厨余垃圾</button>
+                                    <button class="quiz-option p-3 border border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors">有害垃圾</button>
+                                    <button class="quiz-option p-3 border border-gray-300 rounded-lg hover:border-primary hover:bg-primary/5 transition-colors correct">其他垃圾</button>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button id="next-question" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg">
+                                    下一题
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 环保新闻 -->
+        <section id="news" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">环保新闻动态</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        了解最新的环保资讯、政策和科技进展，紧跟绿色发展的脚步。
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 新闻1 -->
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                        <img src="https://picsum.photos/id/1043/400/250" alt="全球气候变化会议现场" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="flex items-center"><i class="fa fa-calendar-o mr-1"></i> 2023-06-15</span>
+                                <span class="mx-2">•</span>
+                                <span class="flex items-center"><i class="fa fa-user-o mr-1"></i> 环保前线</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">全球气候峰会达成多项环保协议</h3>
+                            <p class="text-gray-600 mb-4">在最近召开的全球气候峰会上，各国领导人达成多项重要环保协议，承诺到2030年将碳排放量减少45%。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- 新闻2 -->
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                        <img src="https://picsum.photos/id/1025/400/250" alt="新型太阳能电池板" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="flex items-center"><i class="fa fa-calendar-o mr-1"></i> 2023-06-10</span>
+                                <span class="mx-2">•</span>
+                                <span class="flex items-center"><i class="fa fa-user-o mr-1"></i> 绿色科技</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">新型太阳能电池效率突破30%</h3>
+                            <p class="text-gray-600 mb-4">科学家研发出新型钙钛矿太阳能电池，转换效率首次突破30%，成本仅为传统硅基电池的一半。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- 新闻3 -->
+                    <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                        <img src="https://picsum.photos/id/1042/400/250" alt="城市垃圾分类推广活动" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <span class="flex items-center"><i class="fa fa-calendar-o mr-1"></i> 2023-06-05</span>
+                                <span class="mx-2">•</span>
+                                <span class="flex items-center"><i class="fa fa-user-o mr-1"></i> 本地环保</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">全国垃圾分类覆盖率已达78.9%</h3>
+                            <p class="text-gray-600 mb-4">最新数据显示，我国垃圾分类工作取得显著进展，全国城市垃圾分类覆盖率已达78.9%，较去年提升12个百分点。</p>
+                            <a href="#" class="text-primary font-medium flex items-center">
+                                阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-white border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg font-medium">
+                        查看更多新闻
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 碳足迹计算器 -->
+        <section id="calculator" class="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">碳足迹计算器</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                        计算你的日常生活产生的碳排放量，了解自己的环保影响，并找到减少碳排放的方法。
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- 计算器表单 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold mb-6">计算你的碳足迹</h3>
+                        
+                        <form id="carbon-calculator">
+                            <!-- 出行方式 -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-medium mb-2" for="transport">
+                                    日常出行方式
+                                </label>
+                                <select id="transport" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="public">主要使用公共交通</option>
+                                    <option value="car">主要开车</option>
+                                    <option value="bike">主要骑自行车或步行</option>
+                                    <option value="mix">混合出行方式</option>
+                                </select>
+                            </div>
+                            
+                            <!-- 用电情况 -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-medium mb-2" for="electricity">
+                                    每月电费（元）
+                                </label>
+                                <input type="number" id="electricity" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="例如：150">
+                            </div>
+                            
+                            <!-- 饮食习惯 -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-medium mb-2">
+                                    饮食习惯
+                                </label>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                        <input type="radio" name="diet" value="meat" class="mr-2 text-primary">
+                                        <span>以肉类为主</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                        <input type="radio" name="diet" value="mixed" class="mr-2 text-primary" checked>
+                                        <span>均衡饮食</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                        <input type="radio" name="diet" value="vegetarian" class="mr-2 text-primary">
+                                        <span>素食主义</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-primary transition-colors">
+                                        <input type="radio" name="diet" value="vegan" class="mr-2 text-primary">
+                                        <span>纯素食主义</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- 购物习惯 -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-medium mb-2">
+                                    购物习惯
+                                </label>
+                                <div class="flex items-center p-3 border border-gray-300 rounded-lg">
+                                    <input type="range" id="shopping" min="1" max="5" value="3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary">
+                                    <span id="shopping-value" class="ml-4 text-primary font-medium">中等</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                    <span>很少购物</span>
+                                    <span>频繁购物</span>
+                                </div>
+                            </div>
+                            
+                            <button type="button" id="calculate-btn" class="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg transition-all shadow-md hover:shadow-lg font-medium">
+                                计算碳足迹
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- 结果展示 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6">你的碳足迹结果</h3>
+                            
+                            <div id="result-placeholder" class="text-center py-12">
+                                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fa fa-calculator text-3xl text-gray-400"></i>
+                                </div>
+                                <p class="text-gray-500">填写左侧表单并点击计算按钮查看结果</p>
+                            </div>
+                            
+                            <div id="result-content" class="hidden">
+                                <div class="text-center mb-8">
+                                    <div class="text-5xl font-bold text-primary mb-2" id="carbon-result">0</div>
+                                    <p class="text-gray-600">吨二氧化碳/年</p>
+                                    <div class="mt-4 text-sm text-gray-500">
+                                        全球平均水平约为4吨/人/年
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-8">
+                                    <h4 class="font-bold mb-3">你的碳排放分布</h4>
+                                    <canvas id="carbon-chart" height="200"></canvas>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-bold mb-3">减少碳排放的建议</h4>
+                                    <ul id="recommendations" class="space-y-2">
+                                        <!-- 建议将通过JS动态生成 -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <a href="#" class="block text-center bg-white border border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg transition-all shadow-sm hover:shadow font-medium">
+                                获取详细减排计划
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 订阅区域 -->
+        <section class="py-16 md:py-20 bg-primary text-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold mb-4">加入我们的环保社区</h2>
+                    <p class="text-white/80 mb-8 text-lg">
+                        订阅我们的电子邮件，获取最新的环保资讯、实用技巧和活动邀请。
+                    </p>
+                    
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+                        <input type="email" placeholder="输入你的邮箱地址" class="flex-1 px-5 py-3 rounded-full text-dark focus:outline-none focus:ring-2 focus:ring-white">
+                        <button type="submit" class="bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg font-medium whitespace-nowrap">
+                            立即订阅
+                        </button>
+                    </form>
+                    
+                    <p class="text-white/60 text-sm mt-4">
+                        我们尊重你的隐私，绝不会分享你的个人信息。
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12 md:py-16">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fa fa-leaf text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">环保生活指南</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        我们致力于传播环保知识，推广可持续生活方式，共同守护我们的地球家园。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-qq"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="#tips" class="text-gray-400 hover:text-primary transition-colors">环保技巧</a></li>
+                        <li><a href="#recycle" class="text-gray-400 hover:text-primary transition-colors">垃圾分类</a></li>
+                        <li><a href="#news" class="text-gray-400 hover:text-primary transition-colors">环保新闻</a></li>
+                        <li><a href="#calculator" class="text-gray-400 hover:text-primary transition-colors">碳计算器</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">相关资源</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">环保组织</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">环保法规</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">绿色产品</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">环保志愿者</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">环保教育</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">联系我们</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope-o text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">contact@eco-guide.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">400-123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">北京市海淀区环保科技园A座</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 环保生活指南 版权所有 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 回到顶部
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 数字计数器动画
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    clearInterval(timer);
+                    element.textContent = target.toLocaleString();
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+        
+        // 检测元素是否在视口中
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        // 滚动时检测元素是否进入视口并触发动画
+        let countersAnimated = false;
+        window.addEventListener('scroll', function() {
+            if (!countersAnimated && isInViewport(document.getElementById('counter1'))) {
+                animateCounter(document.getElementById('counter1'), 56);
+                animateCounter(document.getElementById('counter2'), 12500);
+                animateCounter(document.getElementById('counter3'), 890);
+                animateCounter(document.getElementById('counter4'), 1560000);
+                countersAnimated = true;
+            }
+        });
+        
+        // 初始检查
+        window.dispatchEvent(new Event('scroll'));
+        
+        // 环保技巧筛选
+        const tipFilters = document.querySelectorAll('.tip-filter');
+        const tipCards = document.querySelectorAll('.tip-card');
+        
+        tipFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                // 更新活跃状态
+                tipFilters.forEach(f => {
+                    f.classList.remove('active', 'bg-primary', 'text-white');
+                    f.classList.add('bg-white', 'hover:bg-gray-100');
+                });
+                this.classList.add('active', 'bg-primary', 'text-white');
+                this.classList.remove('bg-white', 'hover:bg-gray-100');
+                
+                const category = this.getAttribute('data-filter');
+                
+                // 筛选卡片
+                tipCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 购物习惯滑块
+        const shoppingSlider = document.getElementById('shopping');
+        const shoppingValue = document.getElementById('shopping-value');
+        const shoppingLabels = ['很少', '较少', '中等', '较多', '频繁'];
+        
+        shoppingSlider.addEventListener('input', function() {
+            shoppingValue.textContent = shoppingLabels[this.value - 1];
+        });
+        
+        // 碳足迹计算器
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resultPlaceholder = document.getElementById('result-placeholder');
+        const resultContent = document.getElementById('result-content');
+        const carbonResult = document.getElementById('carbon-result');
+        const recommendations = document.getElementById('recommendations');
+        
+        calculateBtn.addEventListener('click', function() {
+            // 获取表单数据
+            const transport = document.getElementById('transport').value;
+            const electricity = parseFloat(document.getElementById('electricity').value) || 100;
+            const diet = document.querySelector('input[name="diet"]:checked').value;
+            const shopping = parseInt(document.getElementById('shopping').value);
+            
+            // 计算碳足迹（简化模型）
+            let carbon = 0;
+            
+            // 交通碳排放
+            switch(transport) {
+                case 'public':
+                    carbon += 0.8;
+                    break;
+                case 'car':
+                    carbon += 3.2;
+                    break;
+                case 'bike':
+                    carbon += 0.2;
+                    break;
+                case 'mix':
+                    carbon += 1.5;
+                    break;
+            }
+            
+            // 用电碳排放 (每100元电费约产生0.5吨CO2)
+            carbon += (electricity / 100) * 0.5;
+            
+            // 饮食碳排放
+            switch(diet) {
+                case 'meat':
+                    carbon += 2.5;
+                    break;
+                case 'mixed':
+                    carbon += 1.5;
+                    break;
+                case 'vegetarian':
+                    carbon += 0.8;
+                    break;
+                case 'vegan':
+                    carbon += 0.5;
+                    break;
+            }
+            
+            // 购物碳排放
+            carbon += (shopping * 0.3);
+            
+            // 四舍五入保留一位小数
+            carbon = Math.round(carbon * 10) / 10;
+            
+            // 显示结果
+            resultPlaceholder.classList.add('hidden');
+            resultContent.classList.remove('hidden');
+            
+            // 数字动画显示结果
+            let startValue = 0;
+            const duration = 1500;
+            const increment = carbon / (duration / 16);
+            const timer = setInterval(() => {
+                startValue += increment;
+                if (startValue >= carbon) {
+                    clearInterval(timer);
+                    carbonResult.textContent = carbon;
+                } else {
+                    carbonResult.textContent = startValue.toFixed(1);
+                }
+            }, 16);
+            
+            // 生成建议
+            generateRecommendations(transport, electricity, diet, shopping);
+            
+            // 绘制图表
+            drawChart(transport, electricity, diet, shopping, carbon);
+        });
+        
+        // 生成减排建议
+        function generateRecommendations(transport, electricity, diet, shopping) {
+            recommendations.innerHTML = '';
+            const recs = [];
+            
+            // 根据交通方式生成建议
+            if (transport === 'car') {
+                recs.push('尝试每周至少两天使用公共交通或骑自行车出行');
+            }
+            
+            // 根据用电情况生成建议
+            if (electricity > 200) {
+                recs.push('考虑更换为LED灯具，使用节能家电，减少待机能耗');
+            }
+            
+            // 根据饮食习惯生成建议
+            if (diet === 'meat') {
+                recs.push('尝试每周安排1-2天素食日，减少肉类消费');
+            }
+            
+            // 根据购物习惯生成建议
+            if (shopping > 3) {
+                recs.push('减少不必要的购物，优先选择耐用、可回收的产品');
+            }
+            
+            // 通用建议
+            if (recs.length < 3) {
+                recs.push('安装节水龙头和淋浴喷头，减少水资源浪费');
+            }
+            if (recs.length < 3) {
+                recs.push('做好垃圾分类，积极参与社区回收计划');
+            }
+            
+            // 显示建议
+            recs.forEach(rec => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start';
+                li.innerHTML = `<i class="fa fa-lightbulb-o text-primary mt-1 mr-3"></i><span>${rec}</span>`;
+                recommendations.appendChild(li);
+            });
+        }
+        
+        // 绘制碳排放分布图表
+        function drawChart(transport, electricity, diet, shopping, total) {
+            // 计算各部分比例
+            let transportVal, electricityVal, dietVal, shoppingVal;
+            
+            switch(transport) {
+                case 'public':
+                    transportVal = 0.8;
+                    break;
+                case 'car':
+                    transportVal = 3.2;
+                    break;
+                case 'bike':
+                    transportVal = 0.2;
+                    break;
+                case 'mix':
+                    transportVal = 1.5;
+                    break;
+            }
+            
+            electricityVal = (electricity / 100) * 0.5;
+            
+            switch(diet) {
+                case 'meat':
+                    dietVal = 2.5;
+                    break;
+                case 'mixed':
+                    dietVal = 1.5;
+                    break;
+                case 'vegetarian':
+                    dietVal = 0.8;
+                    break;
+                case 'vegan':
+                    dietVal = 0.5;
+                    break;
+            }
+            
+            shoppingVal = shopping * 0.3;
+            
+            // 销毁已存在的图表
+            if (window.carbonChart) {
+                window.carbonChart.destroy();
+            }
+            
+            // 创建新图表
+            const ctx = document.getElementById('carbon-chart').getContext('2d');
+            window.carbonChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['交通', '用电', '饮食', '购物'],
+                    datasets: [{
+                        data: [transportVal, electricityVal, dietVal, shoppingVal],
+                        backgroundColor: [
+                            '#0288D1', // 蓝色 - 交通
+                            '#FFC107', // 黄色 - 用电
+                            '#2E7D32', // 绿色 - 饮食
+                            '#795548'  // 棕色 - 购物
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        }
+        
+        // 垃圾分类测试
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // 重置所有选项
+                quizOptions.forEach(opt => {
+                    opt.classList.remove('border-green-500', 'bg-green-50', 'border-red-500', 'bg-red-50');
+                });
+                
+                // 标记选中的选项
+                if (this.classList.contains('correct')) {
+                    this.classList.add('border-green-500', 'bg-green-50');
+                } else {
+                    this.classList.add('border-red-500', 'bg-red-50');
+                    // 显示正确答案
+                    document.querySelector('.quiz-option.correct').classList.add('border-green-500', 'bg-green-50');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
